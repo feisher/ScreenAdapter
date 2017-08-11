@@ -41,11 +41,11 @@
 
 - dp。dp是Android开发中特有的一个单位。与px不同，dp是基于屏幕像素密度的一种单位。在密度低的屏幕上或许1dp=1px，但在密度高的屏幕上可能1dp=4px。编写布局xml时，如果一个控件的长宽都使用dp来指定，那么能确保该控件在各种大小与分辨率的屏幕下的绝对大小都大致相当。也就是说无论在pad下还是大小屏手机下，我们实际看到的该控件的大小是差不多的：
 
-![](https://github.com/feisher/ScreenAdapter/blob/master/dp.png)
+![image](https://github.com/feisher/ScreenAdapter/blob/master/dp.png)
 
 - 资源目录名。上图可见虽然使用dp确保了控件在不同屏幕中的绝对大小一致。这样的好处在于，在大小相近的屏幕中，无论分辨率多大都不会对布局造成影响；但是当屏幕大小相差较大时，仅保证控件的绝对大小看起来就有些问题了。在res目录下可以给各资源目录都加上例如'-1920x1080'等后缀来适配不同的屏幕，具体规则可见官网文档。这样可以针对不同的屏幕提供不同的布局，甚至针对pad与手机提供两套完全不同的布局样式。但是通常情况下，设计师并不会对不同屏幕提供不同的设计图，他们的需求仅仅是不同屏幕下控件对屏幕的相对大小一致，所以dp并不能满足这一点，而对各种屏幕适配一遍又显得略为繁琐，并且修改也较为麻烦。通常我们需要的适配是这样的：
  
-![](https://github.com/feisher/ScreenAdapter/blob/master/hope.png)
+![image](https://github.com/feisher/ScreenAdapter/blob/master/hope.png)
 
 - 百分比布局支持库。没有使用过，但是deprecated in API level 26.0.0-beta1。
 - ConstraintLayout。百分比支持库deprecated之后推荐使用的布局，看起来似乎略复杂。

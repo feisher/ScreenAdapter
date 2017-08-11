@@ -1,7 +1,37 @@
 # 简单粗暴安卓全屏幕适配
+ 
+## 话不多说，先上解决方案
+  ```java
+  /**  将此文件直接复制到项目中，不要忘记清单文件配置Application，另 布局中使用pt
+  *	（例如： android:layout_height="300pt" 用错可不适配哦！）
+  *	feisher  @2017年8月11日14:52:27 二次整理，原稿 为新浪大牛 布隆  
+  *	458079442@qq.com
+  */
+  public class MyApplication extends Application{
 
+  	public final static float DESIGN_WIDTH = 750; //绘制页面时参照的设计图宽度
 
+  	@Override
+  	public void onCreate() {
+  		super.onCreate();
+  		resetDensity();//注意不要漏掉
+  	}
 
+  	@Override
+  	public void onConfigurationChanged(Configuration newConfig) {
+          super.onConfigurationChanged(newConfig);
+          resetDensity();//这个方法重写也是很有必要的
+  	}
+
+      public void resetDensity(){
+          Point size = new Point();
+          ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getSize(size);
+          getResources().getDisplayMetrics().xdpi = size.x/DESIGN_WIDTH*72f;
+      }
+  }
+
+  ```
+  ##为什么会有这么一篇文章呢？
 **现状**
 
 由于Android碎片化严重，屏幕适配一直是开发中较为头疼的问题。面对市面上五花八门的屏幕大小与分辨率，Android基于dp与res目录名称来适配的方案已无法满足一次编写全屏幕适配的需求，为了达到最优的视觉效果，开发过程中总是需要花费较多资源进行适配。也有开发者给出了一些自己的解决方案。首先来分析一下一些常见的解决方案的现状：

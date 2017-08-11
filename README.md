@@ -114,10 +114,13 @@ public static float applyDimension(int unit, float value,DisplayMetrics metrics)
 
 - 需要在代码中动态转换成px时使用TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PT, value, metrics)。
 
-  *UI给我们提供的设计图是这样的*
-  ![img](https://github.com/feisher/feisher.github.io/blob/master/UI.jpg)
-  **创建什么样的预览使用的设备以设计图为准**
-- 预览。实时预览时绘制页面是很重要的一个环节。以1334x750的设计图为例，为了实现于正常绘制时一样的预览功能，创建一个长为1334磅，宽为750磅的设备作为预览，经换算约为21.5英寸((sqrt(1334^2+750^2))/72)。**此处直接按照iphone 6尺寸设置4.7也没影响**。预览时选择这个设备即可。
+  *UI给我们提供的设计图是这样的*  
+  
+  ![img](https://github.com/feisher/feisher.github.io/blob/master/UI.jpg)  
+  
+  **创建什么样的预览使用的设备以设计图为准**  
+  
+  - 预览。实时预览时绘制页面是很重要的一个环节。以1334x750的设计图为例，为了实现于正常绘制时一样的预览功能，创建一个长为1334磅，宽为750磅的设备作为预览，经换算约为21.5英寸((sqrt(1334^2+750^2))/72)。**此处直接按照iphone 6尺寸设置4.7也没影响**。预览时选择这个设备即可。
 
 ![img](https://github.com/feisher/feisher.github.io/blob/master/RomSetting.jpg）
 - 怎么创建那个750设计稿分辨率的设备呐？看图，_知道的同学请跳过_

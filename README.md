@@ -82,11 +82,13 @@ public static float applyDimension(int unit, float value,DisplayMetrics metrics)
 
 
 - 需要在代码中动态转换成px时使用TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PT, value, metrics)。
-- 预览。实时预览时绘制页面是很重要的一个环节。以1334x750的设计图为例，为了实现于正常绘制时一样的预览功能，创建一个长为1334磅，宽为750磅的设备作为预览，经换算约为21.5英寸((sqrt(1334^2+750^2))/72)。预览时选择这个设备即可。
+- 预览。实时预览时绘制页面是很重要的一个环节。以1334x750的设计图为例，为了实现于正常绘制时一样的预览功能，创建一个长为1334磅，宽为750磅的设备作为预览，经换算约为21.5英寸((sqrt(1334^2+750^2))/72)。**此处直接按照iphone 6尺寸设置4.7也没影响**。预览时选择这个设备即可。
 
 ![img](http://img.mp.itc.cn/upload/20170727/d372509f4c3c407e8c2cb69550cd2e06_th.jpg)
 
 ![img](http://img.mp.itc.cn/upload/20170727/13328296d83b4920ad91b4fba1e736e2_th.jpg)
+- 怎么创建那个750设计稿分辨率的设备呐？看图
+![img](http://a3.qpic.cn/psb?/V1155yET1ad4pA/buGGc0uf6bkO.32G5o7LumKY9eFg5htaAupZemIuu7c!/b/dAEBAAAAAAAA&bo=zAKAAgAAAAADAGk!&rf=viewer_4&t=5)
 
 - 代码处理。在Application的onCreate中与onConfigurationChanged中更改DisplayMetrics（其中DESIGN_WIDTH是绘制页面时参照的设计图宽度）：
 

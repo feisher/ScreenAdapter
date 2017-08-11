@@ -41,11 +41,11 @@
 
 - dp。dp是Android开发中特有的一个单位。与px不同，dp是基于屏幕像素密度的一种单位。在密度低的屏幕上或许1dp=1px，但在密度高的屏幕上可能1dp=4px。编写布局xml时，如果一个控件的长宽都使用dp来指定，那么能确保该控件在各种大小与分辨率的屏幕下的绝对大小都大致相当。也就是说无论在pad下还是大小屏手机下，我们实际看到的该控件的大小是差不多的：
 
-![img](http://a2.qpic.cn/psb?/V1155yET1ad4pA/29WW1D6CdnI13jbMpb56*1N02.V19ARhLCglUSzBkTg!/b/dBgBAAAAAAAA&bo=WALPAQAAAAADALE!&rf=viewer_4&t=5)
+![img](https://github.com/feisher/feisher.github.io/blob/master/dp.png)
 
 - 资源目录名。上图可见虽然使用dp确保了控件在不同屏幕中的绝对大小一致。这样的好处在于，在大小相近的屏幕中，无论分辨率多大都不会对布局造成影响；但是当屏幕大小相差较大时，仅保证控件的绝对大小看起来就有些问题了。在res目录下可以给各资源目录都加上例如'-1920x1080'等后缀来适配不同的屏幕，具体规则可见官网文档。这样可以针对不同的屏幕提供不同的布局，甚至针对pad与手机提供两套完全不同的布局样式。但是通常情况下，设计师并不会对不同屏幕提供不同的设计图，他们的需求仅仅是不同屏幕下控件对屏幕的相对大小一致，所以dp并不能满足这一点，而对各种屏幕适配一遍又显得略为繁琐，并且修改也较为麻烦。通常我们需要的适配是这样的：
 
-![img](http://img.mp.itc.cn/upload/20170727/4b472c62b34c41d6be3e537eef9ad171_th.jpg)
+![img](https://github.com/feisher/feisher.github.io/blob/master/hope.png)
 
 - 百分比布局支持库。没有使用过，但是deprecated in API level 26.0.0-beta1。
 - ConstraintLayout。百分比支持库deprecated之后推荐使用的布局，看起来似乎略复杂。
@@ -104,7 +104,7 @@ public static float applyDimension(int unit, float value,DisplayMetrics metrics)
 
 3
 
-## 方案 （`注意划重点了`）
+## 方案 （**注意划重点了**）
 
 适配的目标是：完全按照设计图上标注的尺寸来编写页面，所编写的页面在所有大小与分辨率的屏幕上都表现一致，即控件在所有屏幕上相对于整个屏幕的相对大小都一致（看起来只是将设计图缩放至屏幕大小）。
 
@@ -113,13 +113,15 @@ public static float applyDimension(int unit, float value,DisplayMetrics metrics)
 
 
 - 需要在代码中动态转换成px时使用TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PT, value, metrics)。
+
+  *UI给我们提供的设计图是这样的*
+  ![img](https://github.com/feisher/feisher.github.io/blob/master/UI.jpg)
+  **创建什么样的预览使用的设备以设计图为准**
 - 预览。实时预览时绘制页面是很重要的一个环节。以1334x750的设计图为例，为了实现于正常绘制时一样的预览功能，创建一个长为1334磅，宽为750磅的设备作为预览，经换算约为21.5英寸((sqrt(1334^2+750^2))/72)。**此处直接按照iphone 6尺寸设置4.7也没影响**。预览时选择这个设备即可。
 
-![img](http://img.mp.itc.cn/upload/20170727/d372509f4c3c407e8c2cb69550cd2e06_th.jpg)
-
-![img](http://img.mp.itc.cn/upload/20170727/13328296d83b4920ad91b4fba1e736e2_th.jpg)
-- 怎么创建那个750设计稿分辨率的设备呐？看图
-![img](http://a3.qpic.cn/psb?/V1155yET1ad4pA/buGGc0uf6bkO.32G5o7LumKY9eFg5htaAupZemIuu7c!/b/dAEBAAAAAAAA&bo=zAKAAgAAAAADAGk!&rf=viewer_4&t=5)
+![img](https://github.com/feisher/feisher.github.io/blob/master/RomSetting.jpg）
+- 怎么创建那个750设计稿分辨率的设备呐？看图，_知道的同学请跳过_
+![img](https://github.com/feisher/feisher.github.io/blob/master/creatRom.png)
 
 - 代码处理。在Application的onCreate中与onConfigurationChanged中更改DisplayMetrics（其中DESIGN_WIDTH是绘制页面时参照的设计图宽度）：
 
@@ -154,15 +156,16 @@ public static float applyDimension(int unit, float value,DisplayMetrics metrics)
 
   ```
 
+
 这样绘制出来的页面就跟设计图几乎完全一样，无论大小屏上看起来就只是将设计图缩放之后的结果。
 
 适配前：
 
-![img](http://img.mp.itc.cn/upload/20170727/9ee9fffbb72545b1bdf1c932cbebb04b_th.jpg)
+![img](https://github.com/feisher/feisher.github.io/blob/master/old.jpg)
 
 适配后：
 
-![img](http://img.mp.itc.cn/upload/20170727/fe13f5925b34485493f8456da0ce3f39_th.jpg)
+![img](https://github.com/feisher/feisher.github.io/blob/master/result.jpg)
 
 *ps:引用自新浪微博  布隆  博客，感谢辛勤的开创者*
 

@@ -1,4 +1,4 @@
-package com.bulong.demo;
+package packagename;
 
 import android.app.Activity;
 import android.app.Application;
@@ -10,9 +10,6 @@ import android.view.WindowManager;
 
 import static android.content.Context.WINDOW_SERVICE;
 
-/**
- * Created by Caodongyao on 2017/8/4.
- */
 
 public class DensityHelper {
 

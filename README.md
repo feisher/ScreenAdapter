@@ -1,17 +1,23 @@
-# 五行代码搞定安卓全屏幕适配——简单粗暴-低入侵，无继承，简单高效
+# 一行代码搞定安卓全屏幕适配——简单粗暴-低入侵，无继承，简单高效
  
 ## 话不多说，先上解决方案  
 
 ### 方案一(推荐)  
   ##### 1.引用工具类  
+  
      **DensityHelper.java**  
-  ##### 2.在自定义的 Application onCreate 方法中加入
-    ```java
-    new DensityHelper(this, DESIGN_WIDTH).activate();  //DESIGN_WIDTH为设计图宽度
-   ```
+     
+  ##### 2.在自定义的 Application onCreate 方法中加入  
+  
+```java
+    new DensityHelper(this, DESIGN_WIDTH).activate();  //DESIGN_WIDTH为设计图宽度，同样不要忘记清单文件配置Application，另 布局中使用pt
+   ```  
+   
    _为啥使用宽度，不考虑高度呢？_  
-   __*因为高度有状态栏，等比例换算会导致变形*__
-### 方案二  ·
+   
+   __*因为高度有状态栏，等比例换算会导致变形*__  
+   
+### 方案二  
  
 ```java
   /**  将此文件直接复制到项目中，不要忘记清单文件配置Application，另 布局中使用pt

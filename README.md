@@ -5,7 +5,7 @@
 ### 方案一(推荐)  
   ##### 1.引用工具类  
   
-     **DensityHelper.java**  
+     [**DensityHelper.java**](https://github.com/feisher/ScreenAdapter/blob/master/DensityHelper.java)
      
   ##### 2.在自定义的 Application onCreate 方法中加入  
   

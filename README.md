@@ -1,6 +1,14 @@
 # 一行代码搞定安卓全屏幕适配——简单粗暴-低入侵，无继承，简单高效
  
 ## 话不多说，先上解决方案  
+### 方案 0（强烈推荐，最新方案）
+复制AdaptScreenUtils.java工具类
+```kotlin
+//baseActivity (或需要适配的页面)中添加(注意750为设计图宽度)
+override fun getResources(): Resources { return ScreenAdaptUtils.adaptWidth(super.getResources(), 750) }
+```
+代码中控件宽高设置可以使用Ada
+ptScreenUtils.pt2px()转化后赋值，字体大小由于系统默认是ps,可转化为ps或使用setTextSize(TypedValue.COMPLEX_UNIT_PT, size)方法
 
 ### 方案一(推荐)  
   ##### 1.引用工具类  
